@@ -1,0 +1,1 @@
+let counter_value = 0;
