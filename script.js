@@ -19,7 +19,7 @@ function decreaseTime() {
     display();}
 }
 function display() {
-    console.log(sTime);
+    // console.log(sTime);
     let sessTime = document.getElementById("sessTime");
     sessTime.innerText = sTime;
 }
@@ -38,7 +38,7 @@ function decreaseBreakTime() {
     displayBreak();}
 }
 function displayBreak() {
-    console.log(bTime);
+    // console.log(bTime);
     let breakTime = document.getElementById("breakTime");
     breakTime.innerText = bTime;
 }
@@ -46,55 +46,101 @@ function displayBreak() {
 // Start time block
 start.addEventListener('click',displayCounter);
 var counter_second = 0;
-var counter_minute = 0;
+var counter_minute;
+var break_second = 0;
+var break_minute;
+let count = 0;
 function displayCounter() {
-    // console.log('display');
-    // if(start.innerText =='Start') {
-    //     start.innerText = 'Pause';
-    //     setInterval(function() {timer();},1000);
-    // }
-    // else {
-    //     start.innerText = 'Start';
-    //     clearInterval();
-    // }
-    
-    let period = document.getElementById('period');
-    
-    setInterval(function() {
-        if (sTime<counter_minute) {
-            counter_second = 0;
-            counter_minute = 0;
-            period.innerText = 'break!'
-            timer();
-        }
-        else {
-            period.innerText = 'Session';
-            timer();
-        }
+    count += 1;
+    if(count === 1){
+        counter_minute = sTime;
+        break_minute = bTime;
+        interVal = setInterval(function() {timer();},1000);
     }
-    ,1000);
-    
 }
 
 // Timer count block
-
+var c = 1;
+var screentext= document.querySelector('.display');
 function timer() {
-    counter_second = counter_second + 1;
-    if(counter_second > 59) {
-        counter_second = 0;
-        counter_minute += 1;
-        if (counter_minute<10) {
-        document.getElementById('minute').innerText = '0' + counter_minute;
-        document.getElementById('second').innerText = '0' + counter_second;
-        }
+    // console.log('timer');
+    // console.log(counter_minute);
+    if ( counter_minute !==0 || counter_second !== 0) {
+    period.innerText = 'Session ' + c;
+    screentext.style.border = '10px solid skyblue';
+    screentext.style.color = 'skyblue';
+    // session time counter
+    if (counter_second == 0)
+    {
+        counter_second = 59;
+        counter_minute -= 1;  
+        if (counter_minute<10)
+            document.getElementById('minute').innerText = '0' + counter_minute;
         else
-        {
         document.getElementById('minute').innerText = counter_minute;
-        document.getElementById('second').innerText = '0' + counter_second;
-        }
+        document.getElementById('second').innerText = counter_second;
     }
-    else if(counter_second<10)
-    document.getElementById('second').innerText = '0' + counter_second;
-    else
-    document.getElementById('second').innerText = counter_second;
+    else{
+        counter_second -= 1;
+        if (counter_minute<10)
+            document.getElementById('minute').innerText = '0' + counter_minute;
+        else
+        document.getElementById('minute').innerText = counter_minute;
+        if (counter_second<10)
+        document.getElementById('second').innerText = '0' + counter_second;
+        else
+        document.getElementById('second').innerText = counter_second;
+    }
 }
+// break time counter
+else {
+    if (break_minute !==0 || break_second !== 0) {
+    period.innerText = 'break!';
+    screentext.style.color = 'orange';
+    screentext.style.border = '10px solid orange';
+    if (break_second == 0)
+    {
+        break_second = 59;
+        break_minute -= 1;  
+        if (break_minute<10)
+            document.getElementById('minute').innerText = '0' + break_minute;
+        else
+        document.getElementById('minute').innerText = break_minute;
+        document.getElementById('second').innerText = break_second;
+    }
+    else{
+        break_second -= 1;
+        if (break_minute<10)
+            document.getElementById('minute').innerText = '0' + break_minute;
+        else
+        document.getElementById('minute').innerText = break_minute;
+        if (break_second<10)
+        document.getElementById('second').innerText = '0' + break_second;
+        else
+        document.getElementById('second').innerText = break_second;
+    }
+    }
+    else {
+        counter_minute = sTime;
+        break_minute = bTime;
+        c += 1;
+    }
+}
+
+}
+
+// Reset code
+reset.addEventListener('click',
+function () {
+    clearInterval(interVal);
+    sTime = 0;
+    display();
+    bTime = 0;
+    displayBreak();
+    count = 0;
+    document.getElementById('minute').innerText = '00';
+    document.getElementById('second').innerText = '00';
+    screentext.style.color = 'black';
+    screentext.style.border = '10px solid black';
+}
+)

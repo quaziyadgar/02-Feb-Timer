@@ -37,7 +37,7 @@ body{
     display: flex;
     font-size: 35px;
     font-weight: 1000;
-    color: skyblue;
+    /* color: skyblue; */
 }
 .time{
     border-top: 1px solid whitesmoke;
