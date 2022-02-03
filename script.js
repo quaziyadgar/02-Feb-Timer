@@ -138,6 +138,7 @@ function () {
     bTime = 0;
     displayBreak();
     count = 0;
+    c = 0;
     counter_second = 0;
     break_second = 0;
     document.getElementById('minute').innerText = '00';
