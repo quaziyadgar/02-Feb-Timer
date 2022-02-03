@@ -76,3 +76,7 @@ body{
 #break-time h2{
     color: darkorange;
 }
+.time-min{
+    display: flex;
+    justify-content: space-around;
+}
