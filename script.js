@@ -138,6 +138,8 @@ function () {
     bTime = 0;
     displayBreak();
     count = 0;
+    counter_second = 0;
+    break_second = 0;
     document.getElementById('minute').innerText = '00';
     document.getElementById('second').innerText = '00';
     screentext.style.color = 'black';
