@@ -50,13 +50,28 @@ var counter_minute;
 var break_second = 0;
 var break_minute;
 let count = 0;
+var checkPause = true;
 function displayCounter() {
+    if (sTime > 0) {
     count += 1;
+    start.innerText = 'Pause';
     if(count === 1){
+        if (checkPause) {
         counter_minute = sTime;
-        break_minute = bTime;
+        break_minute = bTime;}
         interVal = setInterval(function() {timer();},1000);
     }
+    else {
+            clearInterval(interVal);
+            count = 0;
+            start.innerText = 'Resume';
+            period.innerText = 'Paused';
+            checkPause = false;
+    }
+}
+else{
+    alert("Session time cannot be zero");
+}
 }
 
 // Timer count block
@@ -138,9 +153,15 @@ function () {
     bTime = 0;
     displayBreak();
     count = 0;
+    c = 1;
+    counter_second = 0;
+    break_second = 0;
+    checkPause = 'true';
+    period.innerText = 'Session cleared';
     document.getElementById('minute').innerText = '00';
     document.getElementById('second').innerText = '00';
     screentext.style.color = 'black';
     screentext.style.border = '10px solid black';
+    start.innerText = 'Start';
 }
 )
