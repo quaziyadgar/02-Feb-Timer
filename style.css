@@ -80,3 +80,12 @@ body{
     display: flex;
     justify-content: space-around;
 }
+#seekbar{
+    height: 15px;
+    background-image: linear-gradient(90deg,grey,rgb(21, 255, 0));
+    position: relative;
+    top: -45px;
+}
+.seekbar{
+    padding: 15px;
+}

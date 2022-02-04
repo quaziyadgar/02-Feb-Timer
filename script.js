@@ -4,7 +4,7 @@ var breakAdd = document.getElementById('break+');
 var breakSub = document.getElementById('break-');
 var start = document.getElementById('start');
 var reset = document.getElementById('reset');
-
+document.getElementById('seekbar').style.width = 0 + '%';
 // Session time block
 sessAdd.addEventListener('click', increaseTime);
 sessSub.addEventListener('click', decreaseTime);
@@ -106,6 +106,7 @@ function timer() {
         else
         document.getElementById('second').innerText = counter_second;
     }
+    seekBar(sTime,counter_minute, counter_second);
 }
 // break time counter
 else {
@@ -139,9 +140,16 @@ else {
         counter_minute = sTime;
         break_minute = bTime;
         c += 1;
+        if (counter_minute<10)
+        document.getElementById('minute').innerText = '0' + counter_minute;
+        else
         document.getElementById('minute').innerText = counter_minute;
-        document.getElementById('second').innerText = counter_second;
+        document.getElementById('second').innerText = '0' + counter_second;
+        period.innerText = 'Session ' + c;
+        screentext.style.border = '10px solid skyblue';
+        screentext.style.color = 'skyblue';
     }
+    seekBar(bTime,break_minute, break_second);
 }
 
 }
@@ -165,5 +173,13 @@ function () {
     screentext.style.color = 'black';
     screentext.style.border = '10px solid black';
     start.innerText = 'Start';
+    document.getElementById('seekbar').style.width = 0 + '%';
 }
 )
+
+function seekBar(time,minute,second) {
+    console.log('seekbar');
+    let count = time*60;
+    let seek = (count-(minute*60 + second))/count*100;
+    document.getElementById('seekbar').style.width = seek + '%';
+}
