@@ -78,6 +78,10 @@ else{
 var c = 1;
 var screentext= document.querySelector('.display');
 function timer() {
+    breakAdd.setAttribute('disabled',true);
+    breakSub.setAttribute('disabled',true);
+    sessAdd.setAttribute('disabled',true);
+    sessSub.setAttribute('disabled',true);
     // console.log('timer');
     // console.log(counter_minute);
     if ( counter_minute !==0 || counter_second !== 0) {
