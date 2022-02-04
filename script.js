@@ -178,6 +178,10 @@ function () {
     screentext.style.border = '10px solid black';
     start.innerText = 'Start';
     document.getElementById('seekbar').style.width = 0 + '%';
+    breakAdd.setAttribute('disabled',false);
+    breakSub.setAttribute('disabled',false);
+    sessAdd.setAttribute('disabled',false);
+    sessSub.setAttribute('disabled',false);
 }
 )
 
