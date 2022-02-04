@@ -139,6 +139,8 @@ else {
         counter_minute = sTime;
         break_minute = bTime;
         c += 1;
+        document.getElementById('minute').innerText = counter_minute;
+        document.getElementById('second').innerText = counter_second;
     }
 }
 
